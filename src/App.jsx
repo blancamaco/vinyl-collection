@@ -13,6 +13,7 @@ function App() {
   const [userInput, setUserInput] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [accessToken, setAccessToken] = useState('');
+  const [albums, setAlbums] = useState([]);
   
   let result = "";
   function handleSubmit(e){
@@ -64,6 +65,19 @@ function App() {
   )
 
   async function search(query) {
+    // ensure we have a query and an access token
+    const q = query ?? searchInput;
+    if (!q) {
+      console.warn('No query provided to search()');
+      return null;
+    }
+    if (!accessToken) {
+      console.warn('No access token yet');
+      return null;
+    }
+
+    // GET THE ARTIST
+
     let artistParams = {
       method: "GET",
       headers: {
@@ -83,19 +97,81 @@ function App() {
         console.log("No artists found");
         return null;
       }
-      // devuelve el id del primer artista
-      const artistID = data.artists.items[0].id;
+  // devuelve el id del primer artista
+  var artistID = data.artists.items[0].id;
 
-      // console logs para testear
-      console.log("Search Input: " + query);
-      console.log("Artist ID: " + artistID);
+  // console logs para testear
+  console.log("Search Input: " + q);
+  console.log("Artist ID: " + artistID);
 
     } catch (error) {
       console.error("Error fetching artists", error);
       return null;
     }
 
+
+    // GET THE ALBUMS
+    try {
+      const resp = await fetch("https://api.spotify.com/v1/artists/" + artistID + "/albums", artistParams);
+      const data = await resp.json();
+      //extract the albums
+      if(!data.items){
+        console.log("The artist has no albums");
+        return null;
+      }
+      setAlbums(data.items);
+
+      // console logs para testear
+      // console.log("Get: " + resp.length);
+      // console.log("Albums: " + albums[0].name);
+    } catch (error) {
+      console.error("Error fetching albums", error);
+      return null;      
+    }
   }
+
+  /*
+  // 2️⃣ useEffect que depende de searchInput
+  useEffect(() => {
+    // si searchInput está vacío, no hacer nada
+    if (!searchInput || !accessToken) return;
+
+    const searchArtist = async () => {
+      try {
+        const artistParams = {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + accessToken,
+          },
+        };
+
+        const resp = await fetch(
+          "https://api.spotify.com/v1/search?q=" + encodeURIComponent(searchInput) + "&type=artist",
+          artistParams
+        );
+
+        if (!resp.ok) {
+          console.error("Spotify API error", resp.status);
+          return;
+        }
+
+        const data = await resp.json();
+        if (!data.artists.items.length) {
+          console.log("No artists found");
+          return;
+        }
+
+        const artistID = data.artists.items[0].id;
+        console.log("Search Input:", searchInput);
+        console.log("Artist ID:", artistID);
+      } catch (err) {
+        console.error("Error searching artist:", err);
+      }
+    };
+
+    searchArtist();
+  }, [searchInput, accessToken]); // se ejecuta cada vez que searchInput cambia
+  */
 
 
   return (
@@ -104,7 +180,12 @@ function App() {
         <input placeholder='Search an artist' type='text' id='search' value={userInput} onChange={(e) => {setUserInput(e.target.value)}}></input>
         <button type='submit'>Search</button>
       </form>
-      {/* <AlbumList search={search}/> */}
+      {
+        albums && albums.length > 0 ? ( // evitar que nada más empezar haga una petición
+          <AlbumList albums={albums} />
+        ) : null
+      }
+
     </>
   )
 }
