@@ -1,0 +1,134 @@
+.cardContainer {
+    /* width: 400px;
+    height: 400px; */
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.cardContainer:nth-child(n+2) {
+    margin-top: -250px;
+}
+
+
+.vinyl {
+    position: relative;
+    display: flex;
+    width: 300px;
+    height: 300px;
+}
+
+
+.box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-image) center / cover no-repeat;
+    z-index: 2;
+    box-shadow: 0px 0px 5px rgb(94, 94, 94); 
+    transition: 0.5s; 
+}
+
+.vinyl:hover{
+    width: 350px;
+    height: 350px;
+    z-index: 5;
+}
+
+.vinyl:hover > .coverWrapper:not(.selectedBox) > .cover {
+    translate: 100px;
+    animation-play-state: running;
+}
+
+.vinyl {
+    /* z-index: 10; */
+    /* translate: 300px; */
+}
+
+
+.coverWrapper{
+    position: absolute;
+    left: 20px;
+    width: 300px;
+    height: 300px;
+    z-index: 1;
+    transition: translate 0.5s ease;
+}
+
+.cover {
+    position: absolute;
+    left: 20px;
+    width: 300px;
+    height: 300px;
+    border-radius: 150px;
+    background: linear-gradient(160deg,rgba(15, 15, 15, 1) 0%, rgba(51, 51, 51, 1) 65%, rgb(90, 90, 90) 100%);
+    z-index: 1;
+    /* animation*/
+    animation: spin 5s linear infinite;
+    animation-play-state: paused; 
+    transition: translate 0.5s ease-out;
+}
+
+
+
+
+.cover::before {
+    content: "";
+    position: absolute;
+    top: 25%;
+    right: 25%;
+    width: 50%;
+    height: 50%;
+    border-radius: 150px;
+    background: var(--bg-image) center / cover no-repeat;
+}
+
+.cover:hover{
+    /* animation: spin 5s linear infinite; */
+    animation-play-state: running;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* when click the vinyl class class */
+
+.selectedBox {
+    translate: 500px;
+}
+
+
+
+.cover.fixedPosition {
+    /* translate: 50vw; */
+    /* transform: scale(2); */
+    transition: transform 0.5s ease;
+    border-radius: 500px;
+    z-index: 10;
+    animation: spin 5s linear infinite, big 0.5s linear forwards;
+}
+
+@keyframes big {
+    0% {
+    }
+    100% {
+        width: 500px;
+        height: 500px;
+        border-radius: 500px;
+    }
+
+}
+/* .selectedBox:hover > .coverWrapper > .cover {
+    translate: 0px;
+}
+ */
+

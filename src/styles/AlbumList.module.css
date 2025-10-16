@@ -1,0 +1,10 @@
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* .list :global(.cardContainer) {
+    /* transform: rotate(5deg); 
+    outline: 2px solid red;
+} */

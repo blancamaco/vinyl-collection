@@ -1,6 +1,6 @@
 import React from "react";
 import AlbumCard from "./AlbumCard";
-
+import style from "./styles/AlbumList.module.css";
 
 export function AlbumList({albums}) {
     console.log("AlbumList props:", albums);
@@ -15,7 +15,7 @@ export function AlbumList({albums}) {
 
     //Object.keys(albums.items).length;
     const listOfAlbums = albumsArray.map((album) => {
-        return <AlbumCard key={album.id} name={album.name} artist="Coldplay" date={album.release_date} />
+        return <AlbumCard key={album.id} name={album.name} image={album.images[0].url} date={album.release_date} />
     })
 
 
@@ -32,7 +32,7 @@ export function AlbumList({albums}) {
 
 
     return (
-        <div>
+        <div className={style.list}>
             {listOfAlbums}
         </div>
     )

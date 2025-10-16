@@ -22,14 +22,11 @@ function App() {
 
     //const selection = albums[userInput];
     //setResults(<AlbumCard name={selection.name} artist={selection.artist} year={selection.year} />);
-
     setSearchInput(userInput);
-    search(userInput);
+    //search(userInput);
   }
 
   useEffect(() => {
-    alert('hola');
-
     //configurar los parámetros de la petición HTTP de autenticación
     let authParams = { 
       method: "POST",
@@ -61,20 +58,27 @@ function App() {
     
     getToken();
 
-  }, []
-  )
-
-  async function search(query) {
+  }, []);
+  
+  useEffect(() => {
+    //if (!searchInput || !accessToken) return;
     // ensure we have a query and an access token
-    const q = query ?? searchInput;
-    if (!q) {
+    if (!searchInput) {
       console.warn('No query provided to search()');
-      return null;
+      return ;
     }
     if (!accessToken) {
       console.warn('No access token yet');
-      return null;
+      return ;
     }
+
+    search(searchInput);
+
+  }, [searchInput, accessToken]);
+
+  async function search(query) {
+    if (!query) return; // <--- this prevents empty search
+    if (!accessToken) return;
 
     // GET THE ARTIST
 
@@ -101,7 +105,7 @@ function App() {
   var artistID = data.artists.items[0].id;
 
   // console logs para testear
-  console.log("Search Input: " + q);
+  console.log("Search Input: " + query);
   console.log("Artist ID: " + artistID);
 
     } catch (error) {
@@ -180,11 +184,17 @@ function App() {
         <input placeholder='Search an artist' type='text' id='search' value={userInput} onChange={(e) => {setUserInput(e.target.value)}}></input>
         <button type='submit'>Search</button>
       </form>
-      {
-        albums && albums.length > 0 ? ( // evitar que nada más empezar haga una petición
-          <AlbumList albums={albums} />
-        ) : null
-      }
+      <div className="layout">
+        {
+          albums && albums.length > 0 ? ( // evitar que nada más empezar haga una petición
+            <AlbumList albums={albums} />
+          ) : null
+        }
+        {/* <div className="player">
+
+        </div> */}
+      </div>
+
 
     </>
   )

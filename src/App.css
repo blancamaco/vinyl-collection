@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* custom */
+.layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.player {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  background-color: rgb(174, 145, 110);
+}
