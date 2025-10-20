@@ -1,10 +1,19 @@
 .list {
+    width: 1100px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 
-/* .list :global(.cardContainer) {
-    /* transform: rotate(5deg); 
-    outline: 2px solid red;
-} */
+/* when a coverWrapper becomes selected, position it absolutely inside .list */
+.coverWrapper.selectedBox {
+  position: absolute;
+  top: 50px;           /* distance from top of .list */
+  right: 1000px;         /* distance from right of .list */
+  width: 300px;        /* keep same dimensions or adjust */
+  height: 300px;
+  transform: translate(0, 0); /* avoid nonstandard translate property */
+  z-index: 999;
+  transition: transform 0.4s ease, top 0.4s ease, left 0.4s ease; /* smooth */
+}

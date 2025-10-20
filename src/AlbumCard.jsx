@@ -2,23 +2,29 @@ import React, { useState } from "react";
 import styles from "./styles/AlbumCard.module.css"
 
 function AlbumCard(props) {
-    const {name, image, date} = props;
-    const [selected, setSelected] = useState(false);
+    const {name, image, date, selected, onClick, onSelect} = props;
+    // const [selected, setSelected] = useState(false);
 
-    function handleSelection(){
-        setSelected(!selected);
+    // function handleSelection(){
+    //     setSelected(!selected);
+    // }
+
+    function handleClick(e) {
+        onClick(e);
+        onSelect(image);
+        console.log("evento: " + image);
     }
 
     return(
         <div className={styles.cardContainer}>
-            <div className=
-                {`${styles.vinyl} ${selected ? styles.noHover : ""}`} 
-                onClick={handleSelection}>
+            <div className= {`${styles.vinyl} ${selected ? styles.noHover : ""}`} 
+                onClick={handleClick}
+                >
                 <div 
                     className={styles.box}  
                     style={{"--bg-image": `url(${image})`}}> 
                 </div>
-                <div className={`${styles.coverWrapper} ${selected ? styles.selectedBox : ""}`}>
+                <div className={`${styles.coverWrapper} ${selected ? styles.selectedBox : ""}`} >
                     <div 
                         className={`${styles.cover} ${selected ? styles.fixedPosition : ""}`}
                         style={{"--bg-image": `url(${image})`}}>
@@ -27,9 +33,11 @@ function AlbumCard(props) {
 
             </div>
 
-            
-            <h2>{name}</h2>
-            <h4>{date}</h4>
+            <div className={styles.data}>
+                <h2>{name}</h2>
+                <h4>{date}</h4>
+            </div>
+
         </div>
     )
 }

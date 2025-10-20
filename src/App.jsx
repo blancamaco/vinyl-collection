@@ -14,6 +14,9 @@ function App() {
   const [searchInput, setSearchInput] = useState('');
   const [accessToken, setAccessToken] = useState('');
   const [albums, setAlbums] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const bg = selectedItem ? `url(${selectedItem})` : 'none';
+  console.log("bg: " + bg);
   
   let result = "";
   function handleSubmit(e){
@@ -179,24 +182,27 @@ function App() {
 
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input placeholder='Search an artist' type='text' id='search' value={userInput} onChange={(e) => {setUserInput(e.target.value)}}></input>
-        <button type='submit'>Search</button>
-      </form>
-      <div className="layout">
-        {
-          albums && albums.length > 0 ? ( // evitar que nada más empezar haga una petición
-            <AlbumList albums={albums} />
-          ) : null
-        }
-        {/* <div className="player">
+    <section id='container' style={{"--bg-image": bg }}>
 
-        </div> */}
-      </div>
+        <form onSubmit={handleSubmit}>
+          <input class="input" placeholder='Search an artist' type='text' id='search' value={userInput} onChange={(e) => {setUserInput(e.target.value)}}></input>
+          <button type='submit'>Search</button>
+        </form>
 
 
-    </>
+        <div className="layout">
+          {
+            albums && albums.length > 0 ? ( // evitar que nada más empezar haga una petición
+              <AlbumList albums={albums} onSelectItem={setSelectedItem}/>
+            ) : null
+          }
+          {/* <div className="player">
+
+          </div> */}
+        </div>
+
+    </section>
+    
   )
 }
 

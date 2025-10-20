@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import AlbumCard from "./AlbumCard";
 import style from "./styles/AlbumList.module.css";
 
-export function AlbumList({albums}) {
+export function AlbumList({albums, onSelectItem}) {
     console.log("AlbumList props:", albums);
     const albumsArray = albums || [];
+    const [selectedAlbum, setSelectedAlbum] = useState("");
 
     //search = search.toLowerCase();
 
@@ -15,7 +16,9 @@ export function AlbumList({albums}) {
 
     //Object.keys(albums.items).length;
     const listOfAlbums = albumsArray.map((album) => {
-        return <AlbumCard key={album.id} name={album.name} image={album.images[0].url} date={album.release_date} />
+        console.log("Album Selected?:" + selectedAlbum);
+        return <AlbumCard key={album.id} name={album.name} image={album.images[0].url} date={album.release_date} onClick={() => setSelectedAlbum(album.id)} onSelect={() => onSelectItem(album.images[0].url)} selected={selectedAlbum === album.id}/>
+
     })
 
 
