@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import turntableArm from './assets/turntableArm.png'
 import { albums } from './data/sampleData' 
 import { AlbumList } from './AlbumList'
+import { Player } from './Player'
 // App.jsx
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -15,7 +17,7 @@ function App() {
   const [accessToken, setAccessToken] = useState('');
   const [albums, setAlbums] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
-  const bg = selectedItem ? `url(${selectedItem})` : 'none';
+  const bg = selectedItem ? `url(${selectedItem.images[0].url})` : 'none';
   console.log("bg: " + bg);
   
   let result = "";
@@ -196,9 +198,21 @@ function App() {
               <AlbumList albums={albums} onSelectItem={setSelectedItem}/>
             ) : null
           }
-          {/* <div className="player">
+          {
+        <div className="player">
+            <div className="turnTable">
+            <img src={turntableArm} alt="Turntable arm" />
+            {
+              selectedItem != null ? (
+                <Player album={selectedItem}/>
+              ) : (
+                <div className="empty"></div>
 
-          </div> */}
+              )
+            }
+          </div>
+        </div>
+          }
         </div>
 
     </section>

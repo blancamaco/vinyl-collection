@@ -33,10 +33,7 @@ function AlbumCard(props) {
 
             </div>
 
-            <div className={styles.data}>
-                <h2>{name}</h2>
-                <h4>{date}</h4>
-            </div>
+
 
         </div>
     )

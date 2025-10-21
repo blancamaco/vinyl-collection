@@ -17,7 +17,7 @@ export function AlbumList({albums, onSelectItem}) {
     //Object.keys(albums.items).length;
     const listOfAlbums = albumsArray.map((album) => {
         console.log("Album Selected?:" + selectedAlbum);
-        return <AlbumCard key={album.id} name={album.name} image={album.images[0].url} date={album.release_date} onClick={() => setSelectedAlbum(album.id)} onSelect={() => onSelectItem(album.images[0].url)} selected={selectedAlbum === album.id}/>
+    return <AlbumCard key={album.id} name={album.name} image={album.images[0].url} date={album.release_date} onClick={() => setSelectedAlbum(album.id)} onSelect={() => onSelectItem(album)} selected={selectedAlbum === album.id}/>
 
     })
 

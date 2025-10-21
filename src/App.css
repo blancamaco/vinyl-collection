@@ -2,8 +2,10 @@
   margin: 0 auto;
   width: 100%;
   text-align: center;
-}
 
+  --primary-color: #ac9b8d;
+  --secondary-color: #736355;
+}
 
 
 /* custom */
@@ -26,7 +28,7 @@
   content: "";
   position: absolute;
   inset: 0; /* top:0; right:0; bottom:0; left:0; */
-  background: var(--bg-image) top / 150% no-repeat,linear-gradient(150deg, rgba(250, 242, 245, 1) 0%, rgba(252, 207, 250, 1) 45%, rgba(195, 144, 212, 1) 100%);
+  background: var(--bg-image) top / 150% no-repeat,linear-gradient(150deg, rgba(204, 187, 173, 1), rgba(251, 216, 188, 1) 44.96%, rgba(158, 143, 212, 1));
   background-blend-mode: color;
   z-index: 0;
   filter: blur(80px);            /* blur only the image layer */
@@ -57,7 +59,7 @@ form {
 
 .input {
   border-radius: 10px;
-  border: 1px #9641b3 solid;
+  border: 2px var(--primary-color) solid;
   width: 200px;
   height: 50px;
   background-color: #ffffff;
@@ -66,24 +68,24 @@ form {
 }
 
 .input:focus{
-  border-color: #9641b3;
-  outline: 2px solid #9741b343;
+  border-color: var(--primary-color);
+  outline: 5px solid #7a370c29;
 }
 
 button {
   width: 100px;
   height: 54px;
-  background-color: #ffffff;
+  background-color: var(--primary-color);
   align-items: center;
   padding: 0px;
   border-radius: 10px;
   font-size: 1.2em;
-  color: #9641b3;
+  color: white;
 }
 
 button:hover{
   border-color: transparent;
-  outline: 1px solid #9741b3;
+  background-color: var(--secondary-color);
 }
 
 button:focus{
@@ -94,7 +96,8 @@ button:focus{
 
 
 .layout {
-  display: flex;
+  display: grid;
+  grid-template: 1fr / 1fr 1fr;
   width: 100%;
   justify-content: center;
   position: relative;
@@ -138,9 +141,40 @@ button:focus{
 
 
 .player {
-  position: relative;
-  width: 400px;
-  height: 400px;
-  background-color: rgb(174, 145, 110);
+  width: 50%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 20%;
+  right: 4em;
+  pointer-events: none;
 }
 
+.turnTable {
+    display: flex;
+    align-items: center;
+}
+
+.turnTable img {
+  width: 43vmin;
+  height: 55vmin;
+  position: absolute;
+  right: 2px;
+  top: 40px;
+  z-index: 99;
+}
+
+.empty {
+    position: absolute;
+    top: -1px;
+    right: 189px;
+    width: 60vmin;
+    height: 60vmin;
+    border-radius: 3000px;
+    /* background: linear-gradient(160deg,rgba(15, 15, 15, 1) 0%, rgba(51, 51, 51, 1) 65%, rgb(90, 90, 90) 100%); */
+    background: 
+        linear-gradient(200deg, rgba(34, 41, 55, 0.88), rgba(72, 88, 95, 0.76) 65.13%, rgba(91, 97, 98, 0.84));
+    z-index: 1;
+    box-shadow: 0px 0px 30px rgb(94, 94, 94), inset 0px 0px 126px rgb(37, 50, 60);
+}
