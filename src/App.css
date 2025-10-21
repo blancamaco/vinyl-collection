@@ -94,8 +94,9 @@ button:focus{
 
 
 .layout {
+  display: flex;
   width: 100%;
-  justify-items: center;
+  justify-content: center;
   position: relative;
   /* display: grid;
   grid-template-columns: 1fr; */
