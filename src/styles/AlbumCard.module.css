@@ -4,8 +4,8 @@ h2, h4 {
 
 
 .cardContainer {
-    width: 400px;
-    height: 400px;
+    width: 15vw;
+    height: 15vw;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -18,12 +18,12 @@ h2, h4 {
 }
 
 .cardContainer:nth-child(n+2) {
-    margin-top: -15vmin;
+    margin-top: -5vw;
 }
 
-@media screen and (max-width: 2000px){
+@media screen and (max-width: 1500px){
     .cardContainer:nth-child(n+2) {
-        margin-top: -25vmin;
+        margin-top: -5vw;
     }
 }
 
@@ -61,12 +61,12 @@ h2, h4 {
 }
 
 .vinyl:hover{ /*  moves the vinyl up */
-    transform: translate(50px, -50px)  scale(1.1);
+    transform: translate(100px, -50px)  scale(1.1);
     z-index: 99;
 }
 
 .vinyl.noHover { /* freezes the selected vinyl box */
-    transform: translate(250px, -50px) rotate(0deg) scale(1.1);
+    transform: translate(100px, -50px) rotate(0deg) scale(1.1);
     z-index: 999;
 }
 

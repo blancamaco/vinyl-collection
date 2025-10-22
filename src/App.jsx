@@ -188,7 +188,9 @@ function App() {
 
         <form onSubmit={handleSubmit}>
           <input class="input" placeholder='Search an artist' type='text' id='search' value={userInput} onChange={(e) => {setUserInput(e.target.value)}}></input>
-          <button type='submit'>Search</button>
+          <div> {/* for the active press effect*/}
+            <button type='submit'>Search</button>
+          </div>
         </form>
 
 
