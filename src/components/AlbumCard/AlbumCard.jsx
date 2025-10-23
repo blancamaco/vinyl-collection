@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./styles/AlbumCard.module.css"
+import styles from "./AlbumCard.module.css"
 
 function AlbumCard(props) {
     const {name, image, date, selected, onClick, onSelect} = props;

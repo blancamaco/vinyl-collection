@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles/Player.module.css"
+import styles from "./Player.module.css"
 <script src="https://kit.fontawesome.com/e8be5c9cb4.js" crossorigin="anonymous"></script>
 
 export function Player({album}){

@@ -4,8 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import turntableArm from './assets/turntableArm.png'
 import { albums } from './data/sampleData' 
-import { AlbumList } from './AlbumList'
-import { Player } from './Player'
+import { AlbumList } from './components/AlbumList/AlbumList'
+import { Player } from './components/Player/Player'
+import { SearchForm } from './components/SearchForm/SearchForm'
+
 // App.jsx
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
@@ -20,15 +22,10 @@ function App() {
   const bg = selectedItem ? `url(${selectedItem.images[0].url})` : 'none';
   console.log("bg: " + bg);
   
-  let result = "";
-  function handleSubmit(e){
+  function handleSubmit(e){ //cuando se envía el formulario
     e.preventDefault();
-    //setResults('These are the results for ' + userInput);
-
-    //const selection = albums[userInput];
-    //setResults(<AlbumCard name={selection.name} artist={selection.artist} year={selection.year} />);
+ 
     setSearchInput(userInput);
-    //search(userInput);
   }
 
   useEffect(() => {
@@ -65,7 +62,7 @@ function App() {
 
   }, []);
   
-  useEffect(() => {
+  useEffect(() => { // cuando searchInput cambia 
     //if (!searchInput || !accessToken) return;
     // ensure we have a query and an access token
     if (!searchInput) {
@@ -82,7 +79,7 @@ function App() {
   }, [searchInput, accessToken]);
 
   async function search(query) {
-    if (!query) return; // <--- this prevents empty search
+    if (!query) return; //  prevents empty search
     if (!accessToken) return;
 
     // GET THE ARTIST
@@ -95,7 +92,7 @@ function App() {
       },
     };
     
-    //const artistID = await fetch("https://api.spotify.com/v1/search?q=" + search + "&type=artist", artistParams);
+   
     try {
       // get artista
       const resp = await fetch("https://api.spotify.com/v1/search?q=" + encodeURIComponent(query) + "&type=artist", artistParams);
@@ -186,13 +183,7 @@ function App() {
   return (
     <section id='container' style={{"--bg-image": bg }}>
 
-        <form onSubmit={handleSubmit}>
-          <input class="input" placeholder='Search an artist' type='text' id='search' value={userInput} onChange={(e) => {setUserInput(e.target.value)}}></input>
-          <div> {/* for the active press effect*/}
-            <button type='submit'>Search</button>
-          </div>
-        </form>
-
+        <SearchForm userInput={userInput} setUserInput={setUserInput} handleSubmit={handleSubmit} />
 
         <div className="layout">
           {

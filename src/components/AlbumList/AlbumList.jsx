@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AlbumCard from "./AlbumCard";
-import style from "./styles/AlbumList.module.css";
+import AlbumCard from "../AlbumCard/AlbumCard";
+import style from "./AlbumList.module.css";
 
 export function AlbumList({albums, onSelectItem}) {
     console.log("AlbumList props:", albums);
