@@ -1,4 +1,4 @@
-# 🎧 Vinyl Explorer
+# Vinyl Explorer
 
 A visual experience inspired by vinyl collections, built with **React** and the **Spotify Web API**.
 
@@ -14,7 +14,7 @@ As a music lover and vinyl collector, I wanted to recreate the ritual of picking
 
 ---
 
-## 🧠 Design Concept
+## 🎨 Design Concept
 
 The app aims to capture the **tactile and visual sensation** of browsing through real vinyl records:
 
@@ -112,11 +112,11 @@ Throughout this project I learned to:
 
 ## 🪩 Case Study
 
-📸 [Full Case Study](#)(https://blancamaco.github.io/vinylPlayer.html)
+📸 [Full Case Study](https://blancamaco.github.io/vinylPlayer.html)
 
 ---
 
 ## 🧑‍🎨 Author
 
 Design & development by **Blanca**, UX Engineer.  
-💌 [https://blancamaco.github.io/index.html]
+💌 [https://blancamaco.github.io]
