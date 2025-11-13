@@ -2,6 +2,8 @@
 
 A visual experience inspired by vinyl collections, built with **React** and the **Spotify Web API**.
 
+<img width="1379" height="862" alt="image1" border-radius="8px" src="https://github.com/user-attachments/assets/b671678b-171a-470c-9aa0-6f1360e29a78" />
+
 ---
 
 ## ✨ Description
@@ -68,6 +70,11 @@ App.jsx
 - **Wrapper elements** isolate transformations to prevent conflicts between animations.  
 - Subtle 3D effects bring vinyls to life when selected or hovered.
 
+
+https://github.com/user-attachments/assets/a42f2b4e-7084-4ee6-a525-892d87483c18
+
+
+
 ---
 
 ## 📱 Responsiveness
@@ -80,7 +87,7 @@ The layout scales gracefully across screen sizes using relative CSS units (`vmin
 
 1. Clone this repository:  
    ```bash
-   git clone https://github.com/yourusername/vinyl-explorer.git
+   git clone https://github.com/blancamaco/vinyl-explorer.git
    cd vinyl-explorer
    ```
 2. Install dependencies:  
